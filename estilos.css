@@ -1,9 +1,15 @@
+html, body {
+  min-height: 100vh;
+}
+
 body {
   background-image: url(imgs/fundo-assombrado.jpg);
   background-size: cover;
   color: white;
   margin: 0;
   font-family: monospace;
+  display: flex;
+  flex-direction: column;
 }
 
 h1, h2 {
@@ -42,33 +48,41 @@ a:active {
 
 
 /* --- Cabeçalho --- */
-#cabecalho {
+header {
   background-color: rgba(0, 0, 0, .95);
   box-shadow: 2px 10px 10px rgba(0,0,0, .25);
   padding-top: 1em;
   text-align: center;
 }
 
-#cabecalho ul {
+header ul {
   background-color: rgba(0, 204, 147, 0.53);
 }
 
-#cabecalho a {
+header ul li {
+  display: inline-block;
+  list-style-type: none;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+header a {
   text-decoration: none;
   text-shadow: 1px 1px black;
 }
 
-#menu-de-navegacao ul {
+nav ul {
   margin-bottom: 0;
 }
 
 
 
 /* --- Conteúdo principal da página --- */
-#conteudo-principal {
+main {
   padding-left: 2.5%;
   transition: opacity 1s linear;
   padding-bottom: 3em;
+  flex: 1;
 }
 
 
@@ -83,19 +97,31 @@ a:active {
   margin-bottom: 1em;
 }
 
-#posts-principais .post {
+#posts-principais article {
   width: 40%;
   max-width: 400px;
   margin-left: 2.5%;
   margin-right: 2.5%;
   display: inline-block;
+  position: relative;
 }
 
-#posts-principais .post .titulo {
+#posts-principais article .titulo {
   text-shadow: 1px 1px black;
+  position: absolute;
+  top: 0;
+  padding: 10px;
+  opacity: 0;
+  transition: all 300ms ease;
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: default;
 }
 
-#posts-principais .post img {
+#posts-principais article .titulo:hover {
+  opacity: 1;
+}
+
+#posts-principais article img {
   width: 100%;
   max-width: 400px;
   box-sizing: border-box;
@@ -112,12 +138,12 @@ a:active {
   margin-bottom: 1em;
 }
 
-#ultimas-postagens .post {
+#ultimas-postagens article {
   margin-top: 1em;
   margin-bottom: 1em;
 }
 
-#ultimas-postagens .post .data-horario {
+#ultimas-postagens article .data-horario {
   background-color: white;
   color: #333;
   border: 1px solid black;
@@ -133,13 +159,22 @@ a:active {
   display: inline-block;
 }
 
+#ultimas-postagens .novidade::before {
+  content: "Novidade!";
+  display: inline-block;
+  background: limegreen;
+  padding: 0.2em;
+  border-radius: 5px;
+  transform: rotate(-2deg);
+}
+
 
 
 
 /* --- Principal >> Nuvem de tags --- */
 #tags {
   float: right;
-  width: 300px;
+  width: 270px;
   padding: 15px;
   background-color: black;
   background-image: url(imgs/mula.webp);
@@ -147,11 +182,23 @@ a:active {
   background-size: 300px;
   box-shadow: -4px 0 10px rgba(0, 0, 0, 0.5);
   text-align: center;
+  position: sticky;
+  top: 0;
 }
 
 #tags h1 {
   margin-bottom: 1em;
   text-shadow: 2px 2px #000;
+}
+
+#tags span {
+  cursor: default;
+}
+
+#tags span:active {
+  position: relative;
+  top: -2px;
+  left: -2px;
 }
 
 .tag-1,
@@ -175,17 +222,41 @@ a:active {
 }
 
 
+/* --- Boos --- */
+.boo {
+  opacity: 0.4;
+  width: 40px;
+  position: fixed;
+}
 
+.boo:hover {
+  opacity: 1;
+}
+
+.boo1 {
+  left: 120px;
+  bottom: 100px;
+}
+
+.boo2 {
+  right: 122px;
+  top: 407px;
+}
+
+.boo3 {
+  left: 530px;
+  top: 250px;
+}
 
 
 /* --- Rodapé --- */
-#rodape {
+footer {
   background-color: rgba(0, 0, 0, .7);
   padding: 1em;
   display: flex;
 }
 
-#rodape .logo-rodape {
+footer .logo-rodape {
   margin-right: 2em;
 }
 
@@ -258,4 +329,8 @@ a:active {
   color: black;
   border-color: currentColor;
   box-shadow: none;
+}
+
+#inscreva-se form section {
+  display: inline-block;
 }
